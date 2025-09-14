@@ -1,0 +1,267 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    position: relative;
+}
+
+.stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    overflow: hidden;
+}
+
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 3s infinite;
+}
+
+.star:nth-child(odd) {
+    animation-delay: 1.5s;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+.mountains {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to top, #4a5568 0%, #6b46c1 50%, transparent 100%);
+    clip-path: polygon(0 100%, 15% 60%, 25% 80%, 35% 40%, 45% 70%, 60% 30%, 75% 65%, 85% 45%, 100% 75%, 100% 100%);
+    opacity: 0.7;
+}
+
+.mountains::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60%;
+    background: linear-gradient(to top, #2d3748 0%, #553c9a 70%, transparent 100%);
+    clip-path: polygon(0 100%, 20% 50%, 30% 70%, 40% 20%, 50% 60%, 65% 10%, 80% 55%, 90% 25%, 100% 65%, 100% 100%);
+}
+
+.trees {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 25%;
+    background: repeating-linear-gradient(
+        90deg,
+        transparent 0px,
+        transparent 20px,
+        #1a202c 20px,
+        #1a202c 25px
+    );
+    opacity: 0.6;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20'%3E%3Cpolygon points='0,20 5,5 10,20 15,3 20,20 25,7 30,20 35,2 40,20 45,6 50,20 55,4 60,20 65,8 70,20 75,1 80,20 85,5 90,20 95,3 100,20' fill='black'/%3E%3C/svg%3E");
+}
+
+/* Main container */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    z-index: 10;
+}
+
+/* Glass effect */
+.detector-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 40px;
+    width: 450px;
+    max-width: 90vw;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.title {
+    color: white;
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin-bottom: 30px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.subtitle {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    margin-bottom: 30px;
+    line-height: 1.4;
+}
+
+/* Form styling */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.input-field, .select-field, .textarea-field {
+    width: 100%;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    color: white;
+    font-size: 1rem;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.textarea-field {
+    min-height: 100px;
+    resize: vertical;
+    font-family: inherit;
+}
+
+.input-field::placeholder, .textarea-field::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.input-field:focus, .select-field:focus, .textarea-field:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.select-field {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 20px;
+    appearance: none;
+}
+
+.select-field option {
+    background: #4c51bf;
+    color: white;
+    padding: 10px;
+}
+
+.analyze-btn {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+.analyze-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(102, 126, 234, 0.4);
+    background: linear-gradient(45deg, #5a6fd8, #6b42b8);
+}
+
+.analyze-btn:active {
+    transform: translateY(0);
+}
+
+/* Result section */
+.result-section {
+    margin-top: 25px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    display: none;
+}
+
+.result-section.show {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.result-text {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* Response */
+@media (max-width: 480px) {
+    .detector-card {
+        padding: 30px 25px;
+        margin: 20px;
+    }
+    
+    .title {
+        font-size: 1.8rem;
+    }
+}
+
+/* widen main container*/
+.detector-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 40px;
+    width: 900px; /* Increased width */
+    max-width: 90vw;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/*wrap*/
+.main-content {
+    display: flex; /*row*/
+    align-items: flex-start; /*Align*/
+    gap: 30px;
+    text-align: left;
+}
+
+/* take avail space */
+#newsForm, .result-section {
+    flex: 1; /* equal */
+}
+
+/* res sec */
+.result-section {
+    margin-top: 0;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    display: none;
+    min-height: 350px;
+}
